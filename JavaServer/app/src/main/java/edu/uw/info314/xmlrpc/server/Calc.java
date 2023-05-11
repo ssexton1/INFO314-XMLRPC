@@ -8,7 +8,7 @@ public class Calc {
     }
     public int subtract(int lhs, int rhs) { return lhs - rhs; }
     public int multiply(int... args) {
-        int result = 0;
+        int result = 1;
         for (int arg : args) { result *= arg; }
         return result;
     }
