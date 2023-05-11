@@ -85,10 +85,12 @@ public class App {
             int result = executeCall(request);
             String xmlResponse = createXMLResponse(result);
             return xmlResponse;
+        } catch (ArithmeticException ex) {
+            return createErrorXMLResponse(ex.getMessage(), 1);
         } catch (Exception ex) {
             return createErrorXMLResponse(ex.getMessage(), 3);
         }
-    }
+    } 
 
     public static Call extractXMLRPCCall(String XMLRequest) {
         String[] lines = XMLRequest.split("\\n");
@@ -133,6 +135,9 @@ public class App {
             int[] argArray = convertArgsToIntArray(request.args);
             result = c.multiply(argArray);
         } else if (request.name.equals("divide")) {
+            if (request.args.get(1) == 0) {
+                throw new ArithmeticException("Division by zero");
+            }
             result = c.divide(request.args.get(0), request.args.get(1));
         }  else if (request.name.equals("modulo")) {
             result = c.modulo(request.args.get(0), request.args.get(1));
