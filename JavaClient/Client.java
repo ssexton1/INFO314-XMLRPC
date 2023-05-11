@@ -91,9 +91,7 @@ public class Client {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(serverURI.resolve("/RPC"))
                 .header("User-Agent", "Ted's Terrifying Thinkers")
-                // .header("Host", serverURI.toString())
                 .header("Content-Type", "text/xml")
-                // .header("Content-Length", Integer.toString(xmlRequest.length()))
                 .POST(HttpRequest.BodyPublishers.ofString(xmlRequest))
                 .build();
 
