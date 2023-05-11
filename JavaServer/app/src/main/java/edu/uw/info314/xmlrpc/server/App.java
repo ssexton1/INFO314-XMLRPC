@@ -57,7 +57,7 @@ public class App {
             return createErrorXMLResponse("Method Not Supported", 3);
         });
 
-        trace("/RPC", (request, response) -> {
+        trace("/*", (request, response) -> {
             response.status(405);
             response.type("text/xml");
             response.header("Host", "localhost:" + port());
